@@ -1,0 +1,61 @@
+{% extends 'staff.html' %}
+{% load heroicons %}
+
+{% block body %}
+<section class="w-full h-28 mb-20 flex text-white items-center justify-between bg-blue-400 rounded-md px-10">
+  <h2 class="text-xl font-bold capitalize">your posts: {{ user.blog_set.count }}</h2>
+  <button id="open-modal" class="px-6 py-1 pb-1.5 rounded-md text-sm text-white bg-blue-800"
+    style="font-variant: small-caps;">add an assignment</button>
+</section>
+
+<section class="w-full grow gap-10 px-[5%] grid content-start grid-cols-[repeat(auto-fill,minmax(20rem,1fr))]">
+  {% for post in posts %}
+  <div class="p-4 shadow rounded flex flex-col items-start gap-2">
+    <span class="text-sm">{{post.title}}</span>
+    <p class="text-xs text-slate-500">{{ post.body}}</p>
+  </div>
+  {% endfor %}
+</section>
+
+<section id="modal"
+  class="fixed w-full h-full top-0 left-0 hidden items-center justify-center bg-black bg-opacity-60 backdrop-blur-md z-50">
+  <button id="close-modal" class="absolute p-2 cursor-pointer top-10 right-10 bg-white rounded-full scale-75">
+    {% heroicon_outline 'x-mark' %}
+  </button>
+
+  <form method="post" class="w-[26rem] max-w-full p-10 px-6 bg-white rounded flex flex-col gap-4">
+    {% csrf_token %}
+    <h2 class="text-center text-xl capitalize">add a new assignment to your students</h2>
+
+    <input type="hidden" name="lecturer" value="{{user.id}}" />
+    <input type="hidden" name="level" value="{{user.level.id}}" />
+    <div class="w-full gap-4 flex flex-col justify-center">
+      <div class="w-full p-2 flex flex-col items-start gap-1 shadow-sm">
+        <label for="title" class="text-xs capitalize font-semibold">title</label>
+        <input required type="text" name="title" class="w-full rounded bg-gray-100 border-none px-4 py-1">
+      </div>
+
+      <div class="w-full p-2 flex flex-col items-start gap-1 shadow-sm">
+        <label for="title" class="text-xs capitalize font-semibold">body description</label>
+        <textarea required name="body"
+          class="w-full resize-none h-24 rounded bg-gray-100 border-none px-4 py-1"></textarea>
+      </div>
+    </div>
+
+    <button style="font-variant: small-caps;" class="w-full py-2 pb-2.5 rounded-md text-white text-center transition-all bg-blue-600 hover:bg-blue-800">submit</button>
+    </div>
+  </form>
+</section>
+{% endblock %}
+
+{% block script %}
+<script>
+  const modal = document.querySelector('#modal')
+  const openModalBtn = document.querySelector('#open-modal')
+  const closeModalBtn = document.querySelector('#close-modal')
+
+  openModalBtn.addEventListener('click', () => (modal.style.display = 'flex'))
+
+  closeModalBtn.addEventListener('click', () => (modal.style.display = 'none'))
+</script>
+{% endblock %}

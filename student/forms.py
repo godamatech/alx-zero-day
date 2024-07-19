@@ -6,4 +6,4 @@ class RecordForm(ModelForm):
 
     class Meta:
         model = models.Record
-        fields = ["title", "description", "file_upload"]
+        fields = ["user","title", "description", "file_upload"]

@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class Level(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
@@ -15,6 +18,7 @@ class Blog(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
     level = models.ForeignKey(Level, models.CASCADE,blank=True, null=True)
+    lecturer = models.ForeignKey(User, models.PROTECT, null=True, blank=True)
 
     class Meta:
         ordering = ['-created_at']

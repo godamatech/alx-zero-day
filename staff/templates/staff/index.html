@@ -2,10 +2,9 @@
 {% load heroicons %}
 
 {% block body %}
-<h2 class="flex justify-between"> <span class="text-slate-500 text-center text-5xl"> Welcome back to your dash board!
-  </span> <span class="text-right text-5xl"><a href="{% url 'account:logout-view' %}"
-      class="uppercase text-red-400 font-black hover:text-black hover:bg-white w-full p-2 rounded-l-full">exit</a></span>
-</h2>
+<section class="w-full h-36 mb-20 flex text-white items-center justify-between bg-blue-400 rounded-md px-10">
+  <h2 class="text-xl font-bold capitalize">welcome {{ user.first_name|title }}</h2>
+</section>
 
 
 <section class="w-full flex gap-4 flex-wrap items-start">

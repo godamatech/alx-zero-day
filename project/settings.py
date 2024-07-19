@@ -57,11 +57,11 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     # my apps
+    "blog.apps.BlogConfig",
+    "staff.apps.StaffConfig",
     "account.apps.AccountConfig",
     "landing.apps.LandingConfig",
     "student.apps.StudentConfig",
-    "staff.apps.StaffConfig",
-    "blog.apps.BlogConfig",
     # "summary.apps.SummaryConfig",
 ]
 

@@ -20,7 +20,7 @@
         {% if user.is_authenticated %}
           <a href="{% url 'account:logout-view' %}" class="px-6 py-1 flex items-center text-center text-white from-blue-400 to-slate-600 bg-gradient-to-br rounded-full">logout</a>
         {% else %}
-        <a href="{% url 'blog:index_view' %}" class="text-center">Annoncement</a>
+        <!-- <a href="{% url 'blog:index_view' %}" class="text-center">Annoncement</a> -->
           <a href="{% url 'account:login-view' %}" class="text-center">login</a>
           <a href="{% url 'account:register-view' %}" class="px-6 py-1 flex items-center text-center text-white from-blue-400 to-slate-600 bg-gradient-to-br rounded-full">register</a>
         {% endif %}

@@ -6,4 +6,4 @@ class BlogForm(ModelForm):
 
     class Meta:
         model = models.Blog
-        fields = ["title", "body"]
+        fields = ["title", "body", "level", "lecturer"]

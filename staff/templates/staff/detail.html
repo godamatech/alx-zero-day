@@ -9,7 +9,11 @@
         <span class="capitalize text-xl font-semibold text-slate-800">description:</span>
         <p class="text-sm">{{ record.description }}</p>
         <br>
-        <a class="text-slate-500" href="{% url 'student:download-file' record.id %}">Download File</a>
+        {% if record.file_upload %}
+        <a download class="text-slate-500" href="{{ record.file_upload.url }}">Download File</a>
+        {% else %}
+        <h2 class="text-slate-600 font-thin">No attachment!</h2> 
+        {% endif %}
       </div>
 
       <div class="w-full flex items-center justify-between">
